@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: I still don't know</title>
+    <style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    body {
+        padding-top: 80px;  /* PUSHES CONTENT DOWN FROM TOP */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu styles */
+    .menu {
+        display: flex;
+        justify-content: center;
+        gap: 30px;  /* BIGGER GAP */
+        margin: 40px 0;
+        animation: fadeInUp 0.5s ease-out backwards;  /* FADE IN MENU */
+    }
+
+    .menu-link {
+        width: 150px;  /* BIGGER WIDTH */
+        height: 80px;  /* BIGGER HEIGHT */
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;  /* BIGGER FONT */
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+    }
+
+    .menu-link:hover {
+        background-color: #555;
+    }
+
+    h1 {
+        animation: fadeInUp 1s ease-out 1s backwards;  /* FADE IN TITLE WITH DELAY */
+        text-align: center;
+        font-size: 3rem;  /* BIGGER TITLE */
+        margin-bottom: 50px;
+    }
+
+    a {
+        animation: fadeInUp 0.5s ease-out 0.5s backwards;
+        display: inline-block;
+        margin-top: 20px;
+        padding: 15px 30px;  /* BIGGER PADDING */
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;  /* BIGGER FONT */
+        transition: background-color 0.3s;
+    }
+
+    img {
+        animation: fadeInUp 1.5s ease-out 1.5s backwards;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+    }
+
+    /* Section styles (for other pages) */
+    section {
+        margin: 60px auto;  /* MORE MARGIN */
+        max-width: 1000px;  /* BIGGER MAX-WIDTH */
+        padding: 40px;  /* MORE PADDING */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 18px;  /* BIGGER TEXT */
+        animation: fadeInUp 0.5s ease-out 0.5s backwards;  /* FADE IN SECTIONS WITH MORE DELAY */
+    }
+
+/* Webtoon Container */
+.webtoon-container {
+    max-width: 1200px;  /* Wider container */
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
+}
+
+.webtoon-panel {
+    width: calc(100% - 5px);  /* 2 per row */
+    height: auto;
+    margin-bottom: 0px;
+}
+
+/* Larger screens: bigger 2-per-row layout */
+@media (min-width: 1200px) {
+    .webtoon-container {
+        max-width: 1400px;  /* Wider container for big screens */
+    }
+    
+    .webtoon-panel {
+        width: calc(100% - 5px);  /* Slightly larger gap */
+    }
+}
+
+@media (max-width: 600px) {
+    .webtoon-panel {
+        width: 100%;  /* Full width on phone */
+        margin-bottom: 0px;
+    }
+    
+    .webtoon-container {
+        padding: 10px;
+        gap: 0px;
+    }
+}
+
+/* Every 2nd image, remove right margin to align properly */
+.webtoon-panel {
+    margin-right: 0;
+}
+
+.episode-header {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.episode-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+
+.nav-btn {
+    padding: 12px 24px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: #555;
+}
+
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 15px 30px;  /* BIGGER PADDING */
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;  /* BIGGER FONT */
+        transition: background-color 0.3s;
+    }
+
+    .back-link:hover {
+        background-color: #555;
+    }
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: #333;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: #555;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+body.dark-mode .menu-link {
+    background: #555;
+}
+
+body.dark-mode .menu-link:hover {
+    background: #777;
+}
+
+body.dark-mode .nav-btn,
+body.dark-mode .back-link {
+    background: #555;
+}
+
+body.dark-mode .nav-btn:hover,
+body.dark-mode .back-link:hover {
+    background: #777;
+}
+
+</style>
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
+<script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-toggle').textContent = '☀️';
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            this.textContent = '☀️';
+        } else {
+            localStorage.setItem('theme', 'light');
+            this.textContent = '🌙';
+        }
+    });
+</script>
+
+    <!-- Optional: Add menu here if you want navigation on each page -->
+    <div class="menu">
+        <a href="test.html" class="menu-link">Home</a>
+        <a href="manga.html" class="menu-link">Manga</a>
+        <a href="support.html" class="menu-link">Support</a>
+    </div>
+
+    <h1>Chapter 2: One Step Ahead</h1>
+    </div>
+
+    <div class="webtoon-container">
+        <img src="IMG_1198.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1199.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1218.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1124.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1219.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1220.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1221.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1222.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1223.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1205.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1313.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1317.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1240.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1242.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1263.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1315.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1312.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1438.JPG" alt="" class="webtoon-panel">
+        <img src="IMG_1440.JPG" alt="" class="webtoon-panel">
+
+        <div class="episode-nav">
+            <a href="manga.html" class="nav-btn">← Previous</a>
+            <a href="#" class="nav-btn">Next →</a>
+        </div>
+    </div>

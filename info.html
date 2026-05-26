@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    body {
+        padding-top: 80px;  /* PUSHES CONTENT DOWN FROM TOP */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu styles */
+    .menu {
+        display: flex;
+        justify-content: center;
+        gap: 30px;  /* BIGGER GAP */
+        margin: 40px 0;
+        animation: fadeInUp 1s ease-out backwards;  /* FADE IN MENU */
+    }
+
+    .menu-link {
+        width: 150px;  /* BIGGER WIDTH */
+        height: 80px;  /* BIGGER HEIGHT */
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;  /* BIGGER FONT */
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+    }
+
+    .menu-link:hover {
+        background-color: #555;
+    }
+
+    h1 {
+        animation: fadeInUp 1s ease-out 0.5s backwards;  /* FADE IN TITLE WITH DELAY */
+        text-align: center;
+        font-size: 3rem;  /* BIGGER TITLE */
+        margin-bottom: 40px;
+    }
+
+    /* Section styles (for other pages) */
+    section {
+        margin: 60px auto;  /* MORE MARGIN */
+        max-width: 1000px;  /* BIGGER MAX-WIDTH */
+        padding: 40px;  /* MORE PADDING */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 18px;  /* BIGGER TEXT */
+        animation: fadeInUp 1s ease-out 1s backwards;  /* FADE IN SECTIONS WITH MORE DELAY */
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;  /* BIGGER HEADINGS */
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 15px 30px;  /* BIGGER PADDING */
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;  /* BIGGER FONT */
+        transition: background-color 0.3s;
+    }
+
+    .back-link:hover {
+        background-color: #555;
+    }
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: #333;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: #555;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+body.dark-mode .menu-link {
+    background: #555;
+}
+
+body.dark-mode .menu-link:hover {
+    background: #777;
+}
+
+body.dark-mode .nav-btn,
+body.dark-mode .back-link {
+    background: #555;
+}
+
+body.dark-mode .nav-btn:hover,
+body.dark-mode .back-link:hover {
+    background: #777;
+}
+
+</style>
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
+<script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-toggle').textContent = '☀️';
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            this.textContent = '☀️';
+        } else {
+            localStorage.setItem('theme', 'light');
+            this.textContent = '🌙';
+        }
+    });
+</script>
+
+    <!-- Optional: Add menu here if you want navigation on each page -->
+    <div class="menu">
+        <a href="test.html" class="menu-link">Home</a>
+        <a href="manga.html" class="menu-link">Manga</a>
+        <a href="support.html" class="menu-link">Support</a>
+    </div>
+
+    <h1>Information</h1>
+    <section>
+        <h2>About My Manga</h2>
+        <p>There is nothing here yet lol</p>
+        <a href="test.html" class="back-link">Back to Home</a>
+    </section>
+</body>
+</html>

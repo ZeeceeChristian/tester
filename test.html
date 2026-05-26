@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    body {
+        padding-top: 80px;  /* PUSHES CONTENT DOWN FROM TOP */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu styles */
+    .menu {
+        display: flex;
+        justify-content: center;
+        gap: 30px;  /* BIGGER GAP */
+        margin: 40px 0;
+        animation: fadeInUp 1s ease-out backwards;  /* FADE IN MENU */
+    }
+
+    .menu-link {
+        width: 150px;  /* BIGGER WIDTH */
+        height: 80px;  /* BIGGER HEIGHT */
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;  /* BIGGER FONT */
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+    }
+
+    .menu-link:hover {
+        background-color: #555;
+    }
+
+    h1 {
+        animation: fadeInUp 0.5s ease-out 0.5s backwards;  /* FADE IN TITLE WITH DELAY */
+        text-align: center;
+        font-size: 3rem;  /* BIGGER TITLE */
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        animation: fadeInUp 1.0s ease-out 1.0s backwards;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    p {
+        animation: fadeInUp 1.0s ease-out 1.0s backwards;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    /* Section styles */
+    section {
+        margin: 60px auto;  /* MORE MARGIN */
+        max-width: 1000px;  /* BIGGER MAX-WIDTH */
+        padding: 40px;  /* MORE PADDING */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 18px;  /* BIGGER TEXT */
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;  /* BIGGER HEADINGS */
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        background: #333;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1000;
+        transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+        background: #555;
+    }
+
+/* Dark Mode Styles */
+    body.dark-mode {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+
+    body.dark-mode .menu-link {
+        background: #555;
+    }
+
+    body.dark-mode .menu-link:hover {
+        background: #777;
+    }
+
+    body.dark-mode .nav-btn,
+    body.dark-mode .back-link {
+        background: #555;
+    }
+
+    body.dark-mode .nav-btn:hover,
+    body.dark-mode .back-link:hover {
+        background: #777;
+    }
+
+</style>
+
+</head>
+<body>
+<button id="theme-toggle" class="theme-toggle">🌙</button>
+
+<script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-toggle').textContent = '☀️';
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            this.textContent = '☀️';
+        } else {
+            localStorage.setItem('theme', 'light');
+            this.textContent = '🌙';
+        }
+    });
+</script>
+
+    <!-- MENU -->
+    <div class="menu">
+        <a href="info.html" class="menu-link">Info</a>
+        <a href="manga.html" class="menu-link">Manga</a>
+        <a href="Q&A.html" class="menu-link">Q&A</a>
+        <a href="support.html" class="menu-link">Support</a>
+    </div>
+
+    <h1>Welcome!</h1>
+
+    <h2>This is the website for my first manga!</h2>
+    <p style="text-align: center;">Please check out the manga page for the first episode, and support if you want to see more!</p>
+</body>
+</html>
